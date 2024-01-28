@@ -4,14 +4,13 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix6.StatusSignal;
+
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.DutyCycleOut;
+import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,15 +18,19 @@ public class FX extends SubsystemBase {
 TalonFX fx = new TalonFX(5);
 Joystick joystick = new Joystick(0);
 double speed = 0;
+private final VoltageOut m_volt = new VoltageOut(0);
+double maxOutput = 12;
   /** Creates a new FXTest. */
   public FX() {
+    fx.getConfigurator().apply(new TalonFXConfiguration());
     fx.setInverted(true);
     
-
   }
 
   public void test(){
-    fx.set(speed);
+    // fx.set(speed);
+    // fx.setControl(new DutyCycleOut(speed));
+    fx.setControl(m_volt.withOutput(speed*maxOutput));
     System.out.println(speed);
     System.out.println(fx.get());
   }
@@ -47,9 +50,6 @@ double speed = 0;
     }
   }
 
-  public StatusSignal<Double> getSpeed(){
-    return (fx.getVelocity());
-  }
   public void resetSpeed(){
     speed = 0;
   }
