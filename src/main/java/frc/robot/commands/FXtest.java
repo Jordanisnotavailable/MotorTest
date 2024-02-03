@@ -26,6 +26,7 @@ public class FXtest extends Command {
   @Override
   public void execute() {
     fx.test();
+    fx.shoot();
     fx.controlSpeed();
     fx.data();
   }
