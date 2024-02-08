@@ -8,7 +8,11 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FXtest;
+import frc.robot.commands.IntakeAndShoot;
 import frc.robot.subsystems.FX;
+import frc.robot.subsystems.Collectors.Elevator;
+import frc.robot.subsystems.Collectors.Feeder;
+import frc.robot.subsystems.Collectors.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,6 +26,12 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private FX s_fx = new FX();
   private FXtest c_FXtest = new FXtest(s_fx);
+
+  private final Elevator s_Elevator = new Elevator();
+  private final Intake s_Intake = new Intake();
+  private final Feeder s_Feeder = new Feeder();
+
+  private final IntakeAndShoot sc_IntakeAndShoot = new IntakeAndShoot(s_Elevator, s_Feeder, s_Intake);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -86,7 +96,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    c_FXtest.schedule();
+    sc_IntakeAndShoot.schedule();
   }
 
   @Override
