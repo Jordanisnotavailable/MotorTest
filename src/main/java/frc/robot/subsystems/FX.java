@@ -35,10 +35,14 @@ public class FX extends SubsystemBase {
   public FX() {
     shooter.getConfigurator().apply(new TalonFXConfiguration());
     shooter.setInverted(true);
+    // slot0Configs.kV = 0.113;
+    // slot0Configs.kP = 0.2;
+    // slot0Configs.kI = 0.001;
+    // slot0Configs.kD = 0.003;
     slot0Configs.kV = 0.113;
-    slot0Configs.kP = 0.2;
-    slot0Configs.kI = 0.001;
-    slot0Configs.kD = 0.003;
+    slot0Configs.kP = 0;
+    slot0Configs.kI = 0;
+    slot0Configs.kD = 0;
     shooter.getConfigurator().apply(slot0Configs, 0.050);
 
 

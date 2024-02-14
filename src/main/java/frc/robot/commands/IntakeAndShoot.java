@@ -15,21 +15,17 @@ import frc.robot.subsystems.Collectors.Intake;
 public class IntakeAndShoot extends SequentialCommandGroup {
   Elevator s_Elevator = new Elevator();
   Feeder s_Feeder = new Feeder();
-  Intake s_Intake = new Intake();
 
   
   /** Creates a new Shoot. */
-  public IntakeAndShoot(Elevator s_Elevator, Feeder s_Feeder, Intake s_Intake) {
+  public IntakeAndShoot(Elevator s_Elevator, Feeder s_Feeder) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    if(Intake.triggerPressed()){
       addCommands(
-        new Collect(s_Intake),
         new ElevatorDeploy(s_Elevator), 
         new Feed(s_Feeder),
         new ElevatorRetract(s_Elevator)
         );
-    }
   }
 }
 

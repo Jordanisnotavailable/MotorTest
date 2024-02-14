@@ -27,11 +27,11 @@ public class Robot extends TimedRobot {
   private FX s_fx = new FX();
   private FXtest c_FXtest = new FXtest(s_fx);
 
-  private final Elevator s_Elevator = new Elevator();
-  private final Intake s_Intake = new Intake();
-  private final Feeder s_Feeder = new Feeder();
+  // private final Elevator s_Elevator = new Elevator();
+  // private final Intake s_Intake = new Intake();
+  // private final Feeder s_Feeder = new Feeder();
 
-  private final IntakeAndShoot sc_IntakeAndShoot = new IntakeAndShoot(s_Elevator, s_Feeder, s_Intake);
+  // private final IntakeAndShoot sc_IntakeAndShoot = new IntakeAndShoot(s_Elevator, s_Feeder, s_Intake);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    sc_IntakeAndShoot.schedule();
+    // sc_IntakeAndShoot.schedule();
   }
 
   @Override

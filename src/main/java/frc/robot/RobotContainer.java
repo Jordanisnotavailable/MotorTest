@@ -6,12 +6,16 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.DoNothing;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeAndShoot;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IR;
 import frc.robot.subsystems.Collectors.Feeder;
 import frc.robot.subsystems.Collectors.Elevator;
 import frc.robot.subsystems.Collectors.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -22,11 +26,17 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  private final Elevator s_Elevator = new Elevator();
-  private final Intake s_Intake = new Intake();
-  private final Feeder s_Feeder = new Feeder();
+  private final static Elevator s_Elevator = new Elevator();
+  private final static Intake s_Intake = new Intake();
+  private final static Feeder s_Feeder = new Feeder();
+  //private final static IR s_IR = new IR();
+
+  private final IntakeAndShoot sc_InAndShoot = new IntakeAndShoot(s_Elevator, s_Feeder);
+  private final DoNothing c_idle = new DoNothing();
+  public static CommandJoystick commandJoystick = new CommandJoystick(0);
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -49,11 +59,16 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    // new Trigger(m_exampleSubsystem::exampleCondition)
+    //     .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+    
+
+    commandJoystick.button(2).onTrue(sc_InAndShoot).onFalse(c_idle);
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
+    
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 
