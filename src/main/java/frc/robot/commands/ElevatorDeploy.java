@@ -37,5 +37,6 @@ public class ElevatorDeploy extends Command {
   @Override
   public boolean isFinished() {
     return s_Elevator.elevatorDeployed();
+    //return false;
   }
 }

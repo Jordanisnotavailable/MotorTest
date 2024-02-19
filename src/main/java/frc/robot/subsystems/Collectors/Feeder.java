@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Feeder extends SubsystemBase {
-  TalonFX feederMotor = new TalonFX(11);
+  //TalonFX feederMotor = new TalonFX(11);
   WPI_TalonSRX leftOne = new WPI_TalonSRX(1);
   WPI_TalonSRX leftTwo = new WPI_TalonSRX(2);
   WPI_TalonSRX rightOne = new WPI_TalonSRX(3);
@@ -26,14 +26,14 @@ public class Feeder extends SubsystemBase {
   boolean timesUp = false;
   /** Creates a new Feeder. */
   public Feeder() {
-    feederMotor.getConfigurator().apply(new TalonFXConfiguration());
+    //feederMotor.getConfigurator().apply(new TalonFXConfiguration());
     configFeeder();
     
     timer.stop();
     timer.reset();
   }
   public void runFeeder(){
-    // feederMotor.set(0.3);
+    //feederMotor.set(0.2);
 
     //Test
     rightOne.set(0.3);
@@ -71,11 +71,11 @@ public class Feeder extends SubsystemBase {
   }
 
   public void configFeeder(){
-    slot0Configs.kV = 0;
-    slot0Configs.kP = 0;
-    slot0Configs.kI = 0;
-    slot0Configs.kD = 0;
-    feederMotor.getConfigurator().apply(slot0Configs, 0.050);
+    // slot0Configs.kV = 0;
+    // slot0Configs.kP = 0;
+    // slot0Configs.kI = 0;
+    // slot0Configs.kD = 0;
+    // feederMotor.getConfigurator().apply(slot0Configs, 0.050);
   }
 
   @Override

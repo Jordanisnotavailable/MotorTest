@@ -36,5 +36,6 @@ public class ElevatorRetract extends Command {
   @Override
   public boolean isFinished() {
     return s_Elevator.elevatorRetracted();
+    //return false;
   }
 }

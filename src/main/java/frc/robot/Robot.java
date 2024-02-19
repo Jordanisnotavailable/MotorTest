@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ElevatorDeploy;
 import frc.robot.commands.FXtest;
 import frc.robot.commands.IntakeAndShoot;
 import frc.robot.subsystems.FX;
@@ -26,6 +27,9 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private FX s_fx = new FX();
   private FXtest c_FXtest = new FXtest(s_fx);
+
+  private final static Elevator s_elevator = new Elevator();
+  private final ElevatorDeploy c_ElevatorDeploy = new ElevatorDeploy(s_elevator);
 
   // private final Elevator s_Elevator = new Elevator();
   // private final Intake s_Intake = new Intake();
@@ -96,7 +100,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    // sc_IntakeAndShoot.schedule();
+    // sc_IntakeAndShoot.schedule();s
   }
 
   @Override

@@ -7,10 +7,15 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DoNothing;
+import frc.robot.commands.E_DeployRetract;
+import frc.robot.commands.ElevatorDeploy;
+import frc.robot.commands.ElevatorRetract;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeAndShoot;
+import frc.robot.commands.LEDon;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IR;
+import frc.robot.subsystems.LEDlights;
 import frc.robot.subsystems.Collectors.Feeder;
 import frc.robot.subsystems.Collectors.Elevator;
 import frc.robot.subsystems.Collectors.Intake;
@@ -29,13 +34,24 @@ public class RobotContainer {
   private final static Elevator s_Elevator = new Elevator();
   private final static Intake s_Intake = new Intake();
   private final static Feeder s_Feeder = new Feeder();
+
+  private static final LEDlights s_led = new LEDlights();
   //private final static IR s_IR = new IR();
+
+  private final E_DeployRetract c_deployRetract = new E_DeployRetract(s_Elevator);
 
   private final IntakeAndShoot sc_InAndShoot = new IntakeAndShoot(s_Elevator, s_Feeder);
   private final DoNothing c_idle = new DoNothing();
+
+  private final ElevatorDeploy c_eDeploy = new ElevatorDeploy(s_Elevator);
+  private final ElevatorRetract c_eRetract = new ElevatorRetract(s_Elevator);
   public static CommandJoystick commandJoystick = new CommandJoystick(0);
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+
+
+
+  private final LEDon c_ledOn = new LEDon(s_led);
 
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -44,8 +60,11 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    //s_Elevator.setDefaultCommand(c_eDeploy);
     // Configure the trigger bindings
     configureBindings();
+
+    //s_led.setDefaultCommand(c_ledOn);
   }
 
   /**
@@ -65,6 +84,8 @@ public class RobotContainer {
     
 
     commandJoystick.button(2).onTrue(sc_InAndShoot).onFalse(c_idle);
+
+    //commandJoystick.button(2).onTrue(c_deployRetract);
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.

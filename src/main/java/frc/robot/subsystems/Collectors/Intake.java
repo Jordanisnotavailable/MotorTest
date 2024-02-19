@@ -6,6 +6,7 @@ package frc.robot.subsystems.Collectors;
 
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
@@ -32,6 +33,8 @@ public class Intake extends SubsystemBase {
   //AnalogInput ir_sensor = new AnalogInput(4);
 
   Slot0Configs slot0Configs = new Slot0Configs();
+
+  MotionMagicConfigs motionMagic = new MotionMagicConfigs();
 
   
   
